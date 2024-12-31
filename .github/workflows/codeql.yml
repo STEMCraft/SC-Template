@@ -42,7 +42,7 @@ jobs:
       matrix:
         include:
         - language: java-kotlin
-          build-mode: autobuild # This mode only analyzes Java. Set this to 'autobuild' or 'manual' to analyze Kotlin too.
+          build-mode: manual # This mode only analyzes Java. Set this to 'autobuild' or 'manual' to analyze Kotlin too.
         # CodeQL supports the following values keywords for 'language': 'c-cpp', 'csharp', 'go', 'java-kotlin', 'javascript-typescript', 'python', 'ruby', 'swift'
         # Use `c-cpp` to analyze code written in C, C++ or both
         # Use 'java-kotlin' to analyze code written in Java, Kotlin or both
@@ -76,6 +76,9 @@ jobs:
     # 📚 See https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsrun
     
     # commented out to remove clutter from actions output, if needed, uncomment.
+    
+    - name: Build with Maven
+      run: mvn -B clean package --file pom.xml
     
     #- if: matrix.build-mode == 'manual'
     #  shell: bash
